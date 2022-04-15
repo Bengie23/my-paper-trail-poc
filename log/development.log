@@ -1,0 +1,155 @@
+  [1m[35m (0.4ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ bin/rails:9
+  [1m[35m (5.8ms)[0m  [1m[35mCREATE DATABASE `my-paper-trail-poc_development` DEFAULT CHARACTER SET `utf8`[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ bin/rails:9
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE DATABASE `my-paper-trail-poc_test` DEFAULT CHARACTER SET `utf8`[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ bin/rails:9
+  [1m[35m (8.4ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rails:9
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT GET_LOCK('1505568603666225210', 0)[0m
+  ↳ bin/rails:9
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateGroups (20220415205302)
+  [1m[35m (21.2ms)[0m  [1m[35mCREATE TABLE `groups` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL)[0m
+  ↳ db/migrate/20220415205302_create_groups.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20220415205302')[0m
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreatePartners (20220415205339)
+  [1m[35m (8.5ms)[0m  [1m[35mCREATE TABLE `partners` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL)[0m
+  ↳ db/migrate/20220415205339_create_partners.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20220415205339')[0m
+  ↳ bin/rails:9
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreatePartnerGroups (20220415205454)
+  [1m[35m (11.1ms)[0m  [1m[35mCREATE TABLE `partner_groups` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `group_id` bigint, `partner_id` bigint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_partner_groups_on_group_id`  (`group_id`),  INDEX `index_partner_groups_on_partner_id`  (`partner_id`), CONSTRAINT `fk_rails_3543cc2a51`
+FOREIGN KEY (`group_id`)
+  REFERENCES `groups` (`id`)
+, CONSTRAINT `fk_rails_41cb840ea2`
+FOREIGN KEY (`partner_id`)
+  REFERENCES `partners` (`id`)
+)[0m
+  ↳ db/migrate/20220415205454_create_partner_groups.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20220415205454')[0m
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2022-04-15 20:58:38', '2022-04-15 20:58:38')[0m
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT RELEASE_LOCK('1505568603666225210')[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.7ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  ↳ /Users/blopezgutierrez/.rbenv/versions/2.6.6/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT GET_LOCK('1505568603666225210', 0)[0m
+  ↳ /Users/blopezgutierrez/.rbenv/versions/2.6.6/bin/rake:23
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ /Users/blopezgutierrez/.rbenv/versions/2.6.6/bin/rake:23
+Migrating to CreateVersions (20220415205934)
+  [1m[35m (8.5ms)[0m  [1m[35mCREATE TABLE `versions` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `item_type` varchar(191) NOT NULL, `item_id` bigint NOT NULL, `event` varchar(255) NOT NULL, `whodunnit` varchar(255), `object` longtext, `created_at` datetime) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci[0m
+  ↳ db/migrate/20220415205934_create_versions.rb:12
+  [1m[35m (6.3ms)[0m  [1m[35mCREATE  INDEX `index_versions_on_item_type_and_item_id`  ON `versions` (`item_type`, `item_id`) [0m
+  ↳ db/migrate/20220415205934_create_versions.rb:34
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/blopezgutierrez/.rbenv/versions/2.6.6/bin/rake:23
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20220415205934')[0m
+  ↳ /Users/blopezgutierrez/.rbenv/versions/2.6.6/bin/rake:23
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/blopezgutierrez/.rbenv/versions/2.6.6/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  ↳ /Users/blopezgutierrez/.rbenv/versions/2.6.6/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ /Users/blopezgutierrez/.rbenv/versions/2.6.6/bin/rake:23
+  [1m[35m (2.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /Users/blopezgutierrez/.rbenv/versions/2.6.6/bin/rake:23
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT RELEASE_LOCK('1505568603666225210')[0m
+  ↳ /Users/blopezgutierrez/.rbenv/versions/2.6.6/bin/rake:23
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  ↳ /Users/blopezgutierrez/.rbenv/versions/2.6.6/bin/rake:23
+  [1m[35m (0.4ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPartner Create (0.4ms)[0m  [1m[32mINSERT INTO `partners` (`name`, `created_at`, `updated_at`) VALUES ('Test partner', '2022-04-15 21:01:10', '2022-04-15 21:01:10')[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGroup Create (0.6ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('test group', '2022-04-15 21:01:29', '2022-04-15 21:01:29')[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPartner Load (0.4ms)[0m  [1m[34mSELECT  `partners`.* FROM `partners` WHERE `partners`.`id` = 1 LIMIT 1[0m
+  [1m[36mGroup Load (0.4ms)[0m  [1m[34mSELECT  `groups`.* FROM `groups` WHERE `groups`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `partner_groups`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPartnerGroup Create (0.3ms)[0m  [1m[32mINSERT INTO `partner_groups` (`group_id`, `partner_id`, `created_at`, `updated_at`) VALUES (1, 1, '2022-04-15 21:02:24', '2022-04-15 21:02:24')[0m
+  [1m[36mPaperTrail::Version Create (0.4ms)[0m  [1m[32mINSERT INTO `versions` (`item_type`, `item_id`, `event`, `created_at`) VALUES ('PartnerGroup', 1, 'create', '2022-04-15 21:02:24')[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPartnerGroup Load (3.0ms)[0m  [1m[34mSELECT  `partner_groups`.* FROM `partner_groups` WHERE `partner_groups`.`id` = 1 LIMIT 1[0m
+  [1m[36mPartnerGroup Load (0.6ms)[0m  [1m[34mSELECT  `partner_groups`.* FROM `partner_groups` WHERE `partner_groups`.`id` = 1 LIMIT 1[0m
+  [1m[36mPaperTrail::Version Load (0.4ms)[0m  [1m[34mSELECT  `versions`.* FROM `versions` WHERE `versions`.`item_id` = 1 AND `versions`.`item_type` = 'PartnerGroup' ORDER BY `versions`.`created_at` ASC, `versions`.`id` ASC LIMIT 11[0m
+  [1m[35m (2.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPartner Create (1.2ms)[0m  [1m[32mINSERT INTO `partners` (`name`, `created_at`, `updated_at`) VALUES ('Second test partner', '2022-04-15 21:53:00', '2022-04-15 21:53:00')[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPartner Load (8.6ms)[0m  [1m[34mSELECT  `partners`.* FROM `partners` WHERE `partners`.`id` = 2 LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPartnerGroup Create (0.4ms)[0m  [1m[32mINSERT INTO `partner_groups` (`group_id`, `partner_id`, `created_at`, `updated_at`) VALUES (1, 2, '2022-04-15 21:54:00', '2022-04-15 21:54:00')[0m
+  [1m[36mPaperTrail::Version Create (0.3ms)[0m  [1m[32mINSERT INTO `versions` (`item_type`, `item_id`, `event`, `created_at`) VALUES ('PartnerGroup', 2, 'create', '2022-04-15 21:54:00')[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPartnerGroup Load (3.0ms)[0m  [1m[34mSELECT  `partner_groups`.* FROM `partner_groups` WHERE `partner_groups`.`id` = 2 LIMIT 1[0m
+  [1m[36mPaperTrail::Version Load (0.5ms)[0m  [1m[34mSELECT  `versions`.* FROM `versions` WHERE `versions`.`item_id` = 2 AND `versions`.`item_type` = 'PartnerGroup' ORDER BY `versions`.`created_at` ASC, `versions`.`id` ASC LIMIT 11[0m
+  [1m[36mPartnerGroup Load (7.7ms)[0m  [1m[34mSELECT  `partner_groups`.* FROM `partner_groups` WHERE `partner_groups`.`id` = 1 LIMIT 1[0m
+  [1m[36mPaperTrail::Version Load (0.5ms)[0m  [1m[34mSELECT  `versions`.* FROM `versions` WHERE `versions`.`item_id` = 1 AND `versions`.`item_type` = 'PartnerGroup' ORDER BY `versions`.`created_at` ASC, `versions`.`id` ASC LIMIT 11[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `partner_groups`[0m
+  [1m[36mPartnerGroup Load (6.5ms)[0m  [1m[34mSELECT  `partner_groups`.* FROM `partner_groups` WHERE `partner_groups`.`id` = 2 LIMIT 1[0m
+  [1m[36mPartnerGroup Load (0.6ms)[0m  [1m[34mSELECT  `partner_groups`.* FROM `partner_groups` WHERE `partner_groups`.`id` = 1 LIMIT 1[0m
+  [1m[35m (4.9ms)[0m  [1m[34mSELECT COUNT(*) FROM `partners`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPartner Create (0.3ms)[0m  [1m[32mINSERT INTO `partners` (`name`, `created_at`, `updated_at`) VALUES ('another partner', '2022-04-15 22:22:55', '2022-04-15 22:22:55')[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPartner Load (1.0ms)[0m  [1m[34mSELECT  `partners`.* FROM `partners` WHERE `partners`.`id` = 3 LIMIT 1[0m
+  [1m[36mPartnerGroup Load (5.9ms)[0m  [1m[34mSELECT  `partner_groups`.* FROM `partner_groups` WHERE `partner_groups`.`id` = 2 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGroup Load (0.3ms)[0m  [1m[34mSELECT  `groups`.* FROM `groups` WHERE `groups`.`id` = 1 LIMIT 1[0m
+  [1m[36mPartnerGroup Update (0.3ms)[0m  [1m[33mUPDATE `partner_groups` SET `partner_id` = 3, `updated_at` = '2022-04-15 22:25:59' WHERE `partner_groups`.`id` = 2[0m
+  [1m[36mPaperTrail::Version Create (0.4ms)[0m  [1m[32mINSERT INTO `versions` (`item_type`, `item_id`, `event`, `object`, `created_at`) VALUES ('PartnerGroup', 2, 'update', '---\nid: 2\npartner_id: 2\ngroup_id: 1\ncreated_at: 2022-04-15 21:54:00.000000000 Z\nupdated_at: 2022-04-15 21:54:00.000000000 Z\n', '2022-04-15 22:25:59')[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPartnerGroup Load (0.5ms)[0m  [1m[34mSELECT  `partner_groups`.* FROM `partner_groups` WHERE `partner_groups`.`id` = 2 LIMIT 1[0m
+  [1m[36mPaperTrail::Version Load (0.5ms)[0m  [1m[34mSELECT  `versions`.* FROM `versions` WHERE `versions`.`item_id` = 2 AND `versions`.`item_type` = 'PartnerGroup' ORDER BY `versions`.`created_at` ASC, `versions`.`id` ASC LIMIT 11[0m
+  [1m[36mPartnerGroup Load (1.2ms)[0m  [1m[34mSELECT  `partner_groups`.* FROM `partner_groups` WHERE `partner_groups`.`id` = 2 LIMIT 1[0m
+  [1m[35m (3.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGroup Load (25.9ms)[0m  [1m[34mSELECT  `groups`.* FROM `groups` WHERE `groups`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPartnerGroup Load (0.8ms)[0m  [1m[34mSELECT  `partner_groups`.* FROM `partner_groups` WHERE `partner_groups`.`id` = 2 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGroup Load (0.5ms)[0m  [1m[34mSELECT  `groups`.* FROM `groups` WHERE `groups`.`id` = 1 LIMIT 1[0m
+  [1m[36mPartnerGroup Update (0.5ms)[0m  [1m[33mUPDATE `partner_groups` SET `partner_id` = 1, `updated_at` = '2022-04-15 22:29:24' WHERE `partner_groups`.`id` = 2[0m
+  [1m[36mPaperTrail::Version Create (0.3ms)[0m  [1m[32mINSERT INTO `versions` (`item_type`, `item_id`, `event`, `object`, `created_at`) VALUES ('PartnerGroup', 2, 'update', '---\nid: 2\npartner_id: 3\ngroup_id: 1\ncreated_at: 2022-04-15 21:54:00.000000000 Z\nupdated_at: 2022-04-15 22:25:59.000000000 Z\n', '2022-04-15 22:29:24')[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPartnerGroup Load (0.6ms)[0m  [1m[34mSELECT  `partner_groups`.* FROM `partner_groups` WHERE `partner_groups`.`id` = 2 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGroup Load (0.3ms)[0m  [1m[34mSELECT  `groups`.* FROM `groups` WHERE `groups`.`id` = 1 LIMIT 1[0m
+  [1m[36mPartnerGroup Update (0.4ms)[0m  [1m[33mUPDATE `partner_groups` SET `partner_id` = 3, `updated_at` = '2022-04-15 22:30:43' WHERE `partner_groups`.`id` = 2[0m
+  [1m[36mPaperTrail::Version Create (0.3ms)[0m  [1m[32mINSERT INTO `versions` (`item_type`, `item_id`, `event`, `object`, `created_at`) VALUES ('PartnerGroup', 2, 'update', '---\nid: 2\npartner_id: 1\ngroup_id: 1\ncreated_at: 2022-04-15 21:54:00.000000000 Z\nupdated_at: 2022-04-15 22:29:24.000000000 Z\n', '2022-04-15 22:30:43')[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPartnerGroup Load (0.5ms)[0m  [1m[34mSELECT  `partner_groups`.* FROM `partner_groups` WHERE `partner_groups`.`id` = 2 LIMIT 1[0m
+  [1m[36mPaperTrail::Version Load (3.3ms)[0m  [1m[34mSELECT  `versions`.* FROM `versions` WHERE `versions`.`item_id` = 2 AND `versions`.`item_type` = 'PartnerGroup' ORDER BY `versions`.`created_at` ASC, `versions`.`id` ASC LIMIT 11[0m
