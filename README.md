@@ -89,58 +89,8 @@ irb(main):010:0>
 ```
 
 
-##  Author attribute
-**Before getting to the author attribute, please read my clarification in the chat.**
-
-Setting author attribute when we update records (Considering we will only have a single partner)
-
-```ruby
-class PartnerGroup < ApplicationRecord
-  has_paper_trail
-
-  belongs_to :group
-  belongs_to :partner
-
-  def before_update do
-    set_paper_trail_author()
-  end
-
-  private 
-
-  def set_paper_trail_author()
-    PaperTrail.request.whodunnit = get_author()
-  end
-
-  def get_author()
-    # find a way to get the correct author
-    "Default user"
-  end  
-end
-
- 
-```
-
-Setting author attribute when we delete all existing records in order to create new records (Considering we keep multiple partners for a group)
-Since we wouldn't be updating the entity I would suggest to add a method to the class, like:
-```ruby
- class PartnerGroup < ApplicationRecord
-  has_paper_trail
-
-  belongs_to :group
-  belongs_to :partner
-
-  def update_partners_for_group(partners)
-    PaperTrail.request.whodunnit = "author" # get author info 
-
-    # delete existing records
-
-    # create new records based on partners parameter
-  end
-end
-```
-
 ## Results of POC and research (personal opinion)
 - Paper trail gem implementation is pretty straightforward and make a lot of sense for simple entities. For models like PartnerGroup (in this POC) depends on whether or not we are updating records or deleting + recreating, that decision changes everything for me.
 - If deleting + recreating is the way to go we may want to explore the idea of adding a new layer (discuss in the chat)
-- Regarding the whodunnit attribute (author of the change), I personally would avoid setting this value at controller level or at any level except for the model itself. If we want to keep some granularity and avoid concurrent issues (if any) making sure that we configure the whodunnit attribute at the model level is the way to go.
+- Regarding the whodunnit attribute we need to configure it at controller level using Papertrail.request.whodunnit property
 - If we need to delete + recreate we could also use before_create and before_destroy (as described in the code above for before_update) however I find this approach a little messy when we try to read the versions history and make sense of how changes occured.
